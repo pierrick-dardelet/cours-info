@@ -57,7 +57,7 @@ def isoler_rectangle_central(l,c):
     plt.show()
 
 #isoler_rectangle_central(10,20)
-"""
+
 
 # Canaux RGB de l'image
 
@@ -86,4 +86,18 @@ imagecopie[-201:-1,-201:-1]=[255,255,255]
 imagecopie[-201:-1:2,-201:-1]=[255,0,0]
 plt.imshow(imagecopie[-21:-1,-21:-1])
 plt.show()
+"""
+
+# Transparence des images
+
+im2=plt.imread("data/les-mines.jpg")
+h,l=im2.shape[0],im2.shape[1]
+
+Tab=np.empty((h,l,4),np.uint16)
+
+Tab[:,:,:3]=im2[:]
+Tab[:,:,3]=128
+
+plt.imshow(Tab)
+plt.show() #Affiche l'image en transparence à environ 50% (128/255)
 
