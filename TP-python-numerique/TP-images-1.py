@@ -27,5 +27,15 @@ print(T[0,0],T[-1,-1])
 IMAGE=plt.imread("data/les-mines.jpg")
 IMAGECOPIE=IMAGE.copy()
 plt.imshow(IMAGECOPIE)
-plt.show()
+#plt.show()
 print(IMAGECOPIE.flags.writeable)
+print(type(IMAGECOPIE)) #C'est un ndarray
+#Pour trouver sa dimension, on peut donc utiliser .shape
+print(IMAGECOPIE.shape) #-> 533 pixels par 800
+print(IMAGECOPIE.nbytes/(IMAGECOPIE.shape[0]*IMAGECOPIE.shape[1])) #-> 3 bytes par pixel
+print(IMAGECOPIE.dtype) #-> entiers uint8 (sur 8bits)
+print(IMAGECOPIE.min(), IMAGECOPIE.max()) #-> 0 et 255 sont les minimum et maximum atteints
+
+plt.imshow(IMAGECOPIE[:10,:10,:])
+#plt.show()
+
