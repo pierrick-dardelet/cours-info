@@ -22,7 +22,7 @@ plt.show()
 
 print(T[0,0],T[-1,-1])
 
-"""
+
 # Lecture d'une image en couleur
 IMAGE=plt.imread("data/les-mines.jpg")
 IMAGECOPIE=IMAGE.copy()
@@ -57,4 +57,33 @@ def isoler_rectangle_central(l,c):
     plt.show()
 
 #isoler_rectangle_central(10,20)
+"""
+
+# Canaux RGB de l'image
+
+im=plt.imread("data/les-mines.jpg")
+image=im.copy()
+
+image_red=image[:,:,0]
+image_green=image[:,:,1]
+image_blue=image[:,:,2]
+#sélection des première, deuxième et troisième composantes de chaque pixel, pour toutes les lignes, pour toutes les colonnes
+
+print(image_red.shape)
+
+plt.imshow(image_blue,cmap='Blues') #sans le cmap, imshow comprend les valeurs de pixels désormais entre 0 et 255 comme des niveaux de gris. Il les affiche en niveaux de cyan ... On corrige en lui indiquant: niveaux de bleus 'Blues' ici.
+#plt.show()
+
+imagecopie=image.copy()
+
+#remplacement du carré en bas à droite par un uni de couleur ... cette couleur est un rose délavé
+
+imagecopie[-201:-1,-201:-1]=[219, 112, 147]
+plt.imshow(imagecopie)
+#plt.show()
+
+imagecopie[-201:-1,-201:-1]=[255,255,255]
+imagecopie[-201:-1:2,-201:-1]=[255,0,0]
+plt.imshow(imagecopie[-21:-1,-21:-1])
+plt.show()
 
