@@ -86,7 +86,7 @@ imagecopie[-201:-1,-201:-1]=[255,255,255]
 imagecopie[-201:-1:2,-201:-1]=[255,0,0]
 plt.imshow(imagecopie[-21:-1,-21:-1])
 plt.show()
-"""
+
 
 # Transparence des images
 
@@ -100,4 +100,13 @@ Tab[:,:,3]=128
 
 plt.imshow(Tab)
 plt.show() #Affiche l'image en transparence à environ 50% (128/255)
+"""
 
+# Image en niveau de gris en float
+
+im3=plt.imread("data/les-mines.jpg")
+im3copie=im3.copy()
+im3copie=im3copie/255
+
+plt.imshow(im3copie)
+plt.show()
