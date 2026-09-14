@@ -100,13 +100,45 @@ Tab[:,:,3]=128
 
 plt.imshow(Tab)
 plt.show() #Affiche l'image en transparence à environ 50% (128/255)
-"""
 
+"""
 # Image en niveau de gris en float
 
 im3=plt.imread("data/les-mines.jpg")
 im3copie=im3.copy()
 im3copie=im3copie/255
+#print(im3copie) # On a bien des float entre 0 et 1
+#plt.imshow(im3copie)
+#plt.show()
+#plt.imshow(im3)
+#plt.show()
+# Mais visiblement aucune différence à l'affichage. Peut-être une question de cmap qui s'adapte automatiquement: selon que l'image est faite de floats ou ints, le cmap s'adapterait?
 
-plt.imshow(im3copie)
-plt.show()
+
+
+# Transformation de l'image en niveaux de gris
+# a. Par moyenne des valeurs R,G,B
+
+h,l=im3copie.shape[0],im3copie.shape[1]
+
+im3grisa=im3copie.copy() # Préparation de im3 en niveau de gris, donc à seulement 1 paramètre par pixel
+im3grisa.mean(axis=2) # On moyenne les valeurs RGB des pixels, soit la 3e dimension du ndarray, avec la fonction d'agrégation np.mean.
+# Ceci supprime la dernière dimension: im3grisa est devenu un ndarray à 2 dimensions (hauteur, largeur)
+print(im3grisa) # Visiblement la ligne précédente ne change rien à im3grisa ... Je ne comprends pas mon erreur.
+#plt.imshow(im3grisa)
+#plt.show()
+
+# b. Par correction Y
+
+# Méthode proposée: appliquer les poids voulus à chaque canal R, G, B, puis utiliser la fonction d'agrégation np.sum
+# Est-il possible de créer une fonction d'agrégation "custom", qu'on définirait à l'avance et qui s'appliquerait au tableau en 1 fois, façon tableau.mafonctioncustom(axis=...)?
+
+im3grisb=im3copie.copy()
+im3grisb[:,:,0]=im3grisb[:,:,0]*0.299 # J'assigne, à la vue du tableau de canal rouge, la vue du tableau de canal rouge multipliée par le poids souhaité.
+im3grisb[:,:,1]=im3grisb[:,:,1]*0.587
+im3grisb[:,:,2]=im3grisb[:,:,2]*0.114
+np.sum(im3grisb,axis=2)
+
+#plt.imshow(im3grisb)
+#plt.show()
+
