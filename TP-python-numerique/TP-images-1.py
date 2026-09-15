@@ -142,3 +142,12 @@ np.sum(im3grisb,axis=2)
 #plt.imshow(im3grisb)
 #plt.show()
 
+#im3grisa=im3grisa**2 # mise au carré de chaque valeur de pixel, mais ne fonctionne pas à cause de l'étape précédente
+
+im3grisa=np.sqrt(im3grisa)
+
+im3grisa_entiers=im3grisa.astype(np.int16) #Conversion en entiers. On choisit le type 16 bits plutôt que 8 pour atteindre 255
+
+plt.imshow(im3grisa_entiers)
+plt.show() #On obtient logiquement du noir, toutes les valeurs entre 0 et 0.999 étant tronquées en l'entier 0.
+
